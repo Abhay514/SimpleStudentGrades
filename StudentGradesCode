@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class SimpleStudentGrades {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Define the maximum number of students
+        final int MAX_STUDENTS = 10; // Reduced for simplicity
+        double[] grades = new double[MAX_STUDENTS];
+        int count = 0;
+
+        // Input loop for grades
+        System.out.println("Enter student grades (enter -1 to finish):");
+        for (int i = 0; i < MAX_STUDENTS; i++) {
+            double grade = scanner.nextDouble();
+            if (grade == -1) {
+                break; // Exit on -1
+            }
+            grades[count] = grade;
+            count++;
+        }
+
+        // Calculate average, highest, and lowest
+        if (count == 0) {
+            System.out.println("No grades were entered.");
+        } else {
+            double total = 0;
+            double highest = grades[0];
+            double lowest = grades[0];
+
+            for (int i = 0; i < count; i++) {
+                total += grades[i];
+                if (grades[i] > highest) highest = grades[i];
+                if (grades[i] < lowest) lowest = grades[i];
+            }
+
+            double average = total / count;
+            System.out.printf("Average: %.2f%n", average);
+            System.out.printf("Highest: %.2f%n", highest);
+            System.out.printf("Lowest: %.2f%n", lowest);
+        }
+
+        scanner.close();
+    }
+}
